@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import patch, Mock
 import os
-from chatbot import Config, load_config, validate_input, get_response, SERVICE_HANDLERS, trim_conversation_history
+from chatbot import load_config, validate_input, get_response, SERVICE_HANDLERS, trim_conversation_history
 
 class TestChatbot(unittest.TestCase):
 
@@ -81,7 +81,7 @@ class TestChatbot(unittest.TestCase):
         self.assertEqual(reply, "Grok response")
 
     @patch("chatbot.OpenAI")
-    def test_get_openai_response(self, mock_openai):
+    def test_get_openai_response(self, mock_client_class: Mock = None, mock_client: Mock = None,):
         """Test OpenAI response generation."""
         mock_client = Mock()
         mock_completion = Mock()
@@ -93,7 +93,7 @@ class TestChatbot(unittest.TestCase):
         self.assertEqual(reply, "OpenAI response")
 
     @patch("chatbot.cohere.Client")
-    def test_get_cohere_response(self, mock_cohere):
+    def test_get_cohere_response(self, mock_client_class: Mock = None, mock_client: Mock = None,):
         """Test Cohere response generation."""
         mock_client = Mock()
         mock_client.chat.return_value = Mock(text="Cohere response")
@@ -114,7 +114,6 @@ class TestChatbot(unittest.TestCase):
     def test_service_switching(self, mock_get_response):
         """Test service switching logic (mocked response)."""
         mock_get_response.return_value = "Mocked response"
-        config = self.config
         service = "grok"
         model = "grok-2"
         user_input = "switch to openai"
@@ -132,7 +131,6 @@ class TestChatbot(unittest.TestCase):
     def test_model_setting(self, mock_get_response):
         """Test model setting logic (mocked response)."""
         mock_get_response.return_value = "Mocked response"
-        service = "openai"
         model = "gpt-4o"
         user_input = "set model gpt-3.5-turbo"
 

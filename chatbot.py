@@ -80,6 +80,7 @@ def get_grok_response(prompt, model, use_deep_search=False, conversation_history
     full_prompt = build_prompt("physical security consultant", prompt, conversation_history, extra)
     payload = {"model": model, "messages": [{"role": "user", "content": full_prompt}], "max_tokens": 300}
     logger.info("Sending payload to Grok: %s", payload)
+    resp_grok = None
     try:
         resp_grok: Response = requests.post(grok_url, headers=grok_headers, json=payload, timeout=10)
         resp_grok.raise_for_status()
