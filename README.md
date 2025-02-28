@@ -54,7 +54,6 @@ With the updated `chatbot.py` supporting multiple models per service using the `
 
 ### Sample Test Output
 ```
- % python3 -m unittest test_chatbot.py -v
 test_get_cohere_response_multiple_models (test_chatbot.TestChatbot.test_get_cohere_response_multiple_models)
 Test Cohere response generation with multiple models. ... ok
 test_get_grok_response_multiple_models (test_chatbot.TestChatbot.test_get_grok_response_multiple_models)
