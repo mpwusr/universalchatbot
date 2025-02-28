@@ -54,20 +54,39 @@ With the updated `chatbot.py` supporting multiple models per service using the `
 
 ### Sample Test Output
 ```
-test_get_cohere_response (test_chatbot.TestChatbot.test_get_cohere_response) ... ok
-test_get_grok_response (test_chatbot.TestChatbot.test_get_grok_response) ... ok
-test_get_openai_response (test_chatbot.TestChatbot.test_get_openai_response) ... ok
-test_load_config_missing_keys (test_chatbot.TestChatbot.test_load_config_missing_keys) ... ok
-test_load_config_success (test_chatbot.TestChatbot.test_load_config_success) ... ok
-test_model_setting (test_chatbot.TestChatbot.test_model_setting) ... ok
-test_service_switching (test_chatbot.TestChatbot.test_service_switching) ... ok
-test_trim_conversation_history (test_chatbot.TestChatbot.test_trim_conversation_history) ... ok
-test_validate_input_empty (test_chatbot.TestChatbot.test_validate_input_empty) ... ok
-test_validate_input_invalid_chars (test_chatbot.TestChatbot.test_validate_input_invalid_chars) ... ok
-test_validate_input_too_long (test_chatbot.TestChatbot.test_validate_input_too_long) ... ok
-test_validate_input_valid (test_chatbot.TestChatbot.test_validate_input_valid) ... ok
+ % python3 -m unittest test_chatbot.py -v
+test_get_cohere_response_multiple_models (test_chatbot.TestChatbot.test_get_cohere_response_multiple_models)
+Test Cohere response generation with multiple models. ... ok
+test_get_grok_response_multiple_models (test_chatbot.TestChatbot.test_get_grok_response_multiple_models)
+Test Grok response generation with multiple models. ... ok
+test_get_openai_response_multiple_models (test_chatbot.TestChatbot.test_get_openai_response_multiple_models)
+Test OpenAI response generation with multiple models. ... ok
+test_load_config_missing_keys (test_chatbot.TestChatbot.test_load_config_missing_keys)
+Test config loading fails with missing keys. ... ok
+test_load_config_success (test_chatbot.TestChatbot.test_load_config_success)
+Test loading config with valid environment variables. ... ok
+test_model_setting_invalid (test_chatbot.TestChatbot.test_model_setting_invalid)
+Test setting an invalid model raises an error in get_response. ... ok
+test_model_setting_valid (test_chatbot.TestChatbot.test_model_setting_valid)
+Test setting a valid model for the current service. ... ok
+test_service_switching (test_chatbot.TestChatbot.test_service_switching)
+Test service switching logic with default model selection. ... ok
+test_trim_conversation_history (test_chatbot.TestChatbot.test_trim_conversation_history)
+Test conversation history trimming. ... ok
+test_validate_input_empty (test_chatbot.TestChatbot.test_validate_input_empty)
+Test empty input fails validation. ... ok
+test_validate_input_invalid_chars (test_chatbot.TestChatbot.test_validate_input_invalid_chars)
+Test input with invalid characters fails validation. ... ok
+test_validate_input_too_long (test_chatbot.TestChatbot.test_validate_input_too_long)
+Test overly long input fails validation. ... ok
+test_validate_input_valid (test_chatbot.TestChatbot.test_validate_input_valid)
+Test valid input passes validation. ... ok
 
-Ran 12 tests in 0.254s
+----------------------------------------------------------------------
+Ran 13 tests in 0.277s
+
+OK
+
 ```
 
 ## Features Tested
